@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAKA Group Dashboard</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Megabytes Weekly Dashboard</h1>
+            <p>Please Type Data According to Till Report</p>
+            <form action="/submit" method="post">
+                <label for="total_income">Total Income:</label><br>
+                <input type="text" id="total_income" name="total_income"><br>
+                <label for="highest_spend">Highest Spend:</label><br>
+                <input type="text" id="highest_spend" name="highest_spend"><br>
+                <label for="best_selling_item">Best Selling Item:</label><br>
+                <input type="text" id="best_selling_item" name="best_selling_item"><br>
+                <label for="worst_selling_item">Worst Selling Item:</label><br>
+                <input type="text" id="worst_selling_item" name="worst_selling_item"><br>
+                <label for="avg_basket_spend">Average Basket Spend:</label><br>
+                <input type="text" id="avg_basket_spend" name="avg_basket_spend"><br>
+                <label for="staff_mvp">Staff MVP:</label><br>
+                <input type="text" id="staff_mvp" name="staff_mvp"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        
+        </div>
+
+        <div>
+            Logo
+        </div>
+
+        <div>
+            Current date & time
+        </div>
+        
+        <div>
+            Date menu
+        </div>
+
+        <div>
+            Chart 1
+        </div>
+
+        <div>
+            <h2>Sales Overview</h2>
+            
+            {% for data in week_data %}
+            <div>
+                <p>{{ data.id }} : {{ data.total_income }} </p>
+                <p>{{ data.id }} : {{ data.highest_spend }} </p>
+                <p>{{ data.id }} : {{ data.best_selling_item }} </p>
+                <p>{{ data.id }} : {{ data.worst_selling_item }} </p>
+                <p>{{ data.id }} : {{ data.avg_basket_spend }} </p>
+                <p>{{ data.id }} : {{ data.staff_mvp }} </p>
+            <div>
+                {% endfor %}
+        </div>
+        
+        <div>
+            Chart 2
+        </div>
+
+        <div>
+            Chart 3
+        </div>
+
+        <div>
+            Chart 4
+        </div>
+    </div>
+    
+</body>
+</html>

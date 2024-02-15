@@ -1,0 +1,28 @@
+body{
+    /* colou: cosmic latte */
+    background-color: rgb(248, 244, 227); 
+}
+
+.add_task{
+    color: green
+}
+
+.add_error{
+    color: red
+}
+
+.colour_cerise{
+    color: rgb(229, 68, 109)
+}
+
+.colour_coral{
+    color: rgb(255, 137, 102)
+}
+
+.colour_dimgray{
+    color: rgb(112, 108, 97)
+}
+
+.colour_jet{
+    color: rgb(42, 43, 42)
+}
