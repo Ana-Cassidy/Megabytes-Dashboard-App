@@ -49,13 +49,39 @@
             
             {% for data in week_data %}
             <div>
-                <p>{{ data.id }} : {{ data.total_income }} </p>
-                <p>{{ data.id }} : {{ data.highest_spend }} </p>
-                <p>{{ data.id }} : {{ data.best_selling_item }} </p>
-                <p>{{ data.id }} : {{ data.worst_selling_item }} </p>
-                <p>{{ data.id }} : {{ data.avg_basket_spend }} </p>
-                <p>{{ data.id }} : {{ data.staff_mvp }} </p>
+                <p>Total Income: {{ data.total_income }} <br>
+                <form action="/edit" method="post">
+                    <label>Edit Total Income data?</label><br>
+                    <input type="text" name="edit_total_income" placeholder="Edit Data"><br>
+                    <button type="submit">Change Data</button>
+                </form>
+                </p>
+                <p>{{ data.highest_spend }} </p>
+                <p>{{ data.best_selling_item }} </p>
+                <p>{{ data.worst_selling_item }} </p>
+                <p>{{ data.avg_basket_spend }} </p>
+                <p>{{ data.staff_mvp }} </p>
             <div>
+
+            <div>
+                <form action="/edit/{{ data.id }}" method="post">
+                    <div>
+
+                        <label>Edit Highest Spend data?</label><br>
+                        <input type="text" name="edit_highest_spend" placeholder="Edit Data"><br>
+                        <label>Edit Best Selling Item data?</label><br>
+                        <input type="text" name="edit_best_selling_item" placeholder="Edit Data"><br>
+                        <label>Edit Worst Selling Item data?</label><br>
+                        <input type="text" name="edit_worst_selling_item" placeholder="Edit Data"><br>
+                        <label>Edit Average Basket Spend data?</label><br>
+                        <input type="text" name="edit_avg_basket_spend" placeholder="Edit Data"><br>
+                        <label>Edit Staff Mvp data?</label><br>
+                        <input type="text" name="edit_staff_mvp" placeholder="Edit Data"><br>
+                        <button type="submit">Change Data</button>
+                    </div>
+                </form>
+            </div>
+            
                 {% endfor %}
         </div>
         
