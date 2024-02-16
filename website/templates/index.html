@@ -4,12 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAKA Group Dashboard</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
+    <header>
+        <div class="company-info">
+            <h1>CAKA Group Dashboard</h1>
+            <img src="\static\images\megabytes_logo.png"  alt="Company Logo">
+            <div class="date-selector">
+                <h2>Date Selector</h2>
+                <form>
+                    <label for="selectedDate">Select Date:</label>
+                    <input type="date" id="selectedDate" name="selectedDate">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="day-container">
+            <!-- Links to each day's page -->
+            <a href="Beta-Monday.html">Monday</a>
+            <a href="Beta-Tuesday.html">Tuesday</a>
+            <a href="Beta-Wednesday.html">Wednesday</a>
+            <a href="Beta-Thursday.html">Thursday</a>
+            <a href="Beta-Friday.html">Friday</a>
+            <a href="Beta-Saturday.html">Saturday</a>
+            <a href="Beta-Sunday.html">Sunday</a>
+        </div>
+    </main>
+
+    <p class="centered-text">
+        Megabytes Cafe is a coffee shop located in the heart of the city.
+    </p>
+    <p class="centered-text">
+        We offer a wide variety of coffee, tea, and pastries. 
+    </p>
+    <p class="centered-text"> 
+        Our menu is always changing to reflect the latest trends and flavours.
+    </p>
+
+
+<p>Here starts my code</p>
+
     <div>
         <div>
-            <h1>Megabytes Weekly Dashboard</h1>
-            <p>Please Type Data According to Till Report</p>
+            <p>Please Type Data According to Your Till Report</p>
             <form action="/submit" method="post">
                 <label for="total_income">Total Income:</label><br>
                 <input type="text" id="total_income" name="total_income"><br>
@@ -25,23 +66,17 @@
                 <input type="text" id="staff_mvp" name="staff_mvp"><br><br>
                 <input type="submit" value="Submit">
             </form>
-        
         </div>
+        <hr><br>
+        <div>
 
-        <div>
-            Logo
-        </div>
+            <p>Week Income By Day</p>
+            {% if week_data %}
+            <div>
+                <p><img src="\static\images\week_income.png"></p>
+            </div>
+            {% endif %}
 
-        <div>
-            Current date & time
-        </div>
-        
-        <div>
-            Date menu
-        </div>
-
-        <div>
-            Chart 1
         </div>
 
         <div>
@@ -49,53 +84,38 @@
             
             {% for data in week_data %}
             <div>
-                <p>Total Income: {{ data.total_income }} <br>
-                <form action="/edit" method="post">
-                    <label>Edit Total Income data?</label><br>
-                    <input type="text" name="edit_total_income" placeholder="Edit Data"><br>
-                    <button type="submit">Change Data</button>
-                </form>
-                </p>
-                <p>{{ data.highest_spend }} </p>
-                <p>{{ data.best_selling_item }} </p>
-                <p>{{ data.worst_selling_item }} </p>
-                <p>{{ data.avg_basket_spend }} </p>
-                <p>{{ data.staff_mvp }} </p>
-            <div>
-
-            <div>
-                <form action="/edit/{{ data.id }}" method="post">
-                    <div>
-
+                <p>
+                    <form action="/edit/{{ data.id }}" method="post">
+                        Total Income: {{ data.total_income }}<br>
+                        <label>Edit Total Income data?</label><br>
+                        <input type="text" name="edit_total_income" placeholder="Edit Data"><br>
+                        <hr>
+                        Highest Spend: {{ data.highest_spend }}<br>
                         <label>Edit Highest Spend data?</label><br>
                         <input type="text" name="edit_highest_spend" placeholder="Edit Data"><br>
+                        <hr>
+                        Best Selling Item: {{ data.best_selling_item }}<br>
                         <label>Edit Best Selling Item data?</label><br>
                         <input type="text" name="edit_best_selling_item" placeholder="Edit Data"><br>
+                        <hr>
+                        Worst Selling Item: {{ data.worst_selling_item }}<br>
                         <label>Edit Worst Selling Item data?</label><br>
                         <input type="text" name="edit_worst_selling_item" placeholder="Edit Data"><br>
+                        <hr>
+                        Average Basket Spend: {{ data.avg_basket_spend }}<br>
                         <label>Edit Average Basket Spend data?</label><br>
                         <input type="text" name="edit_avg_basket_spend" placeholder="Edit Data"><br>
+                        <hr>
+                        Staff MVP: {{ data.staff_mvp }}<br>
                         <label>Edit Staff Mvp data?</label><br>
                         <input type="text" name="edit_staff_mvp" placeholder="Edit Data"><br>
-                        <button type="submit">Change Data</button>
-                    </div>
-                </form>
+                        <hr>
+                        <button type="submit">Update Data</button>
+                    </form>
+
             </div>
-            
                 {% endfor %}
-        </div>
-        
-        <div>
-            Chart 2
-        </div>
-
-        <div>
-            Chart 3
-        </div>
-
-        <div>
-            Chart 4
-        </div>
+        </div>        
     </div>
     
 </body>

@@ -4,12 +4,33 @@ from . import db
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
 
 my_view = Blueprint("my_view", __name__)
+
+id_to_day = {
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday",
+    7: "Sunday",
+}
 
 @my_view.route('/')
 def home():
     week_data = Megabytes.query.all()
+    if week_data:
+        day_income =[]
+        week_day = []
+        for day in week_data:
+            day_income.append(day.total_income)
+            week_day.append(id_to_day.get(day.id))
+        print(day.total_income, day_income)
+        plt.scatter(week_day, day_income)
+        plt.savefig("website/static/images/week_income.png")
     return render_template("index.html", week_data = week_data)
 
 @my_view.route('/submit', methods=['POST'])
