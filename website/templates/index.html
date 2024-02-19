@@ -21,7 +21,6 @@
             </div>
         </div>
     </header>
-
     <main>
         <div class="day-container">
             <!-- Links to each day's page -->
@@ -45,20 +44,88 @@
     <p class="centered-text"> 
         Our menu is always changing to reflect the latest trends and flavours.
     </p>
+    <hr>
+    <br>
+    <br>
 
     <div>
-        <hr><br>
-        <div>
 
-            <p>Megabytes Week Income</p>
+            <h2>Megabytes Week Income</h2>
             {% if week_data %}
             <div>
                 <p><img src="\static\images\week_income.png"></p>
-            </div>
-            {% endif %}
 
         </div>
 
+        <div>
+            <h2> Daily Sales Overview</h2>
+
+            {% for data in week_data %}
+            <div>
+                {{ data.id }}
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Total Income</th>
+                        <th>Highest Spend</th>
+                        <th>Best Selling Item</th>
+                        <th>Worst Selling Item</th>
+                        <th>Average Basket Spend</th>
+                        <th>Staff MVP</th>
+                    </tr>
+                    <tr>
+                        <td>Edit Data</td>
+                        <form action="/edit_total_income/{{ data.id }}" method="post">
+                            <td>
+                            {{ data.total_income }}<br>
+                            <input type="text" name="edit_total_income" placeholder="Edit Data"><br>
+                            <button type="submit">Update Data</button>
+                            </td>
+                        </form>
+                        <form action="/edit_highest_spend/{{ data.id }}" method="post">
+                            <td>
+                            {{ data.highest_spend }}<br>
+                            <input type="text" name="edit_highest_spend" placeholder="Edit Data"><br>
+                            <button type="submit">Update Data</button>
+                            </td>
+                        </form>
+                        <form action="/edit_best_selling_item/{{ data.id }}" method="post">
+                            <td>
+                            {{ data.best_selling_item }}<br>
+                            <input type="text" name="edit_best_selling_item" placeholder="Edit Data"><br>
+                            <button type="submit">Update Data</button>
+                            </td>
+                        </form>
+                        <form action="/edit_worst_selling_item/{{ data.id }}" method="post">
+                            <td>
+                            {{ data.worst_selling_item }}<br>
+                            <input type="text" name="edit_worst_selling_item" placeholder="Edit Data"><br>
+                            <button type="submit">Update Data</button>
+                            </td>
+                        </form>
+                        <form action="/edit_avg_basket_spend/{{ data.id }}" method="post">
+                            <td>
+                            {{ data.avg_basket_spend }}<br>
+                            <input type="text" name="edit_avg_basket_spend" placeholder="Edit Data"><br>
+                            <button type="submit">Update Data</button>
+                            </td>
+                        </form>
+                        <form action="/edit_staff_mvp/{{ data.id }}" method="post">
+                            <td>
+                            {{ data.staff_mvp }}<br>
+                            <input type="text" name="edit_staff_mvp" placeholder="Edit Data"><br>
+                            <button type="submit">Update Data</button>
+                            </td>
+                        </form>
+                        <hr>
+                    </tr>
+                </table>
+
+            </div>
+                {% endfor %}
+
+                {% endif %}
+        </div>        
     </div>
     
 </body>

@@ -18,7 +18,6 @@ id_to_day = {
     6: "Saturday",
     7: "Sunday",
 }
-
 @my_view.route('/')
 def home():
     week_data = Megabytes.query.all()
@@ -49,27 +48,61 @@ def submit():
     db.session.commit()
     return redirect(url_for("my_view.home"))
 
-@my_view.route("/edit_monday/<data_id>", methods=["POST"])
-def edit_monday(data_id):
+@my_view.route("/edit_total_income/<data_id>", methods=["POST"])
+def edit_total_income(data_id):
     data = Megabytes.query.filter_by(id=data_id).first()
-
     edit_total_income = request.form.get("edit_total_income")
-    edit_highest_spend = request.form.get('edit_highest_spend')
-    edit_best_selling_item = request.form.get('edit_best_selling_item')
-    edit_worst_selling_item = request.form.get('edit_worst_selling_item')
-    edit_avg_basket_spend = request.form.get('edit_avg_basket_spend')
-    edit_staff_mvp = request.form.get('edit_staff_mvp')
-
     data.total_income = edit_total_income
-    data.highest_spend = edit_highest_spend
-    data.best_selling_item = edit_best_selling_item
-    data.worst_selling_item = edit_worst_selling_item
-    data.avg_basket_spend = edit_avg_basket_spend
-    data.staff_mvp = edit_staff_mvp
-
     db.session.commit()
     edition = "Your data was successfully edited!"
-    return redirect(url_for("my_view./monday/", edition=edition))
+    return redirect(url_for("my_view.home", edition=edition))
+
+@my_view.route("/edit_highest_spend/<data_id>", methods=["POST"])
+def edit_highest_spend(data_id):
+    data = Megabytes.query.filter_by(id=data_id).first()
+    edit_highest_spend = request.form.get('edit_highest_spend')
+    data.highest_spend = edit_highest_spend
+    db.session.commit()
+    edition = "Your data was successfully edited!"
+    return redirect(url_for("my_view.home", edition=edition))
+
+@my_view.route("/edit_best_selling_item/<data_id>", methods=["POST"])
+def edit_best_selling_item(data_id):
+    data = Megabytes.query.filter_by(id=data_id).first()
+    edit_best_selling_item = request.form.get('edit_best_selling_item')
+    data.best_selling_item = edit_best_selling_item
+    db.session.commit()
+    edition = "Your data was successfully edited!"
+    return redirect(url_for("my_view.home", edition=edition))
+
+@my_view.route("/edit_worst_selling_item/<data_id>", methods=["POST"])
+def edit_worst_selling_item(data_id):
+    data = Megabytes.query.filter_by(id=data_id).first()
+    edit_worst_selling_item = request.form.get('edit_worst_selling_item')
+    data.worst_selling_item = edit_worst_selling_item
+    db.session.commit()
+    edition = "Your data was successfully edited!"
+    return redirect(url_for("my_view.home", edition=edition))
+
+@my_view.route("/edit_avg_basket_spend/<data_id>", methods=["POST"])
+def edit_avg_basket_spend(data_id):
+    data = Megabytes.query.filter_by(id=data_id).first()
+    edit_avg_basket_spend = request.form.get('edit_avg_basket_spend')
+    data.avg_basket_spend = edit_avg_basket_spend
+    db.session.commit()
+    edition = "Your data was successfully edited!"
+    return redirect(url_for("my_view.home", edition=edition))
+
+@my_view.route("/edit_staff_mvp/<data_id>", methods=["POST"])
+def edit_staff_mvp(data_id):
+    data = Megabytes.query.filter_by(id=data_id).first()
+    edit_staff_mvp = request.form.get('edit_staff_mvp')
+    data.staff_mvp = edit_staff_mvp
+    db.session.commit()
+    edition = "Your data was successfully edited!"
+    return redirect(url_for("my_view.home", edition=edition))
+
+
 
 @my_view.route("/monday/", methods = ['GET', 'POST'])
 def monday():
