@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="form-container">
+            
+            <p>Please Type Data According to Your Till Report</p>
+
+            <table>
+                <form action="/submit" method="post">
+                    <tr>
+                        <th></th>
+                        <th>Total Income</th>
+                        <th>Highest Speed</th>
+                        <th>Best Selling Item</th>
+                        <th>Worst Selling Item</th>
+                        <th>Average Basket Spend</th>
+                        <th>Staff MVP</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Input Data</th>
+                        <th><input type="text" id="total_income" name="total_income"></th>
+                        <th><input type="text" id="highest_spend" name="highest_spend"></th>
+                        <th><input type="text" id="best_selling_item" name="best_selling_item"></th>
+                        <th><input type="text" id="worst_selling_item" name="worst_selling_item"></th>
+                        <th><input type="text" id="avg_basket_spend" name="avg_basket_spend"></th>
+                        <th><input type="text" id="staff_mvp" name="staff_mvp"> </th>
+                        <th><button type="submit">Submit Data</button></th>
+                    </tr>
+                </form>
+            </table>
+        </div>
+
+        <br>
+        <hr>
+
+        {% if week_data %}
+            <div>
+                <p>Here's What Happened Today.</p>
+                {% for data in week_data %}
+                <form action="/edit_thursday/{{ data.id }}" method="post"></form>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Data</th>
+                            <th>Edit Data</th>
+                        </tr>
+                        <tr>
+                            <th>Total Income</th>
+                            <th>{{ data.total_income }}</th>
+                            <th><input type="text" name="edit_total_income" placeholder="Edit Data"><br></th>
+                            <th><button type="submit">Update Data</button></th>
+                        </tr>
+                        <tr>
+                            <th>Highest Spend</th>
+                            <th>{{ data.highest_spend }}</th>
+                            <th><input type="text" name="edit_highest_spend" placeholder="Edit Data"></th>
+                            <th><button type="submit">Update Data</button></th>
+                        </tr>
+                        <tr>
+                            <th>Best Selling Item</th>
+                            <th>{{ data.best_selling_item }}</th>
+                            <th><input type="text" name="edit_best_selling_item" placeholder="Edit Data"></th>
+                            <th><button type="submit">Update Data</button></th>
+                        </tr>
+                        <tr>
+                            <th>Worst Selling Item</th>
+                            <th>{{ data.worst_selling_item }}</th>
+                            <th><input type="text" name="edit_worst_selling_item" placeholder="Edit Data"></th>
+                            <th><button type="submit">Update Data</button></th>
+                        </tr>
+                        <tr>
+                            <th>Average Basket Spend</th>
+                            <th>{{ data.avg_basket_spend }}</th>
+                            <th><input type="text" name="edit_avg_basket_spend" placeholder="Edit Data"></th>
+                            <th><button type="submit">Update Data</button></th>
+                        </tr>
+                        <tr>
+                            <th>Staff MVP</th>
+                            <th>{{ data.staff_mvp }}</th>
+                            <th><input type="text" name="edit_staff_mvp" placeholder="Edit Data"></th>
+                            <th><button type="submit">Update Data</button></th>
+                        </tr>
+                    </table>
+                </form>
+                {% endfor %}
+            </div>
+        
+    <br>
+    <hr>
+
+            <div class="charts-container">
+                <img class="chart" src="{{ url_for('static', filename='Monday-Drink.png') }}" alt="Drinks">
+                <img class="chart" src="{{ url_for('static', filename='Monday-Food.png') }}" alt="Food">
+                <img class="chart" src="\static\images\Payment Methods used Thursday.png" alt="Payment Methods used Thursday - Pie Chart">
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

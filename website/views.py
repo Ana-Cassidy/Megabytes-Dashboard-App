@@ -30,6 +30,9 @@ def home():
             week_day.append(id_to_day.get(day.id))
         print(day.total_income, day_income)
         plt.scatter(week_day, day_income)
+        plt.title("Megabytes Week Income")
+        plt.xlabel("Days of The Week")
+        plt.ylabel("Daily Income")
         plt.savefig("website/static/images/week_income.png")
     return render_template("index.html", week_data = week_data)
 
@@ -46,8 +49,8 @@ def submit():
     db.session.commit()
     return redirect(url_for("my_view.home"))
 
-@my_view.route("/edit/<data_id>", methods=["POST"])
-def edit(data_id):
+@my_view.route("/edit_monday/<data_id>", methods=["POST"])
+def edit_monday(data_id):
     data = Megabytes.query.filter_by(id=data_id).first()
 
     edit_total_income = request.form.get("edit_total_income")
@@ -66,4 +69,33 @@ def edit(data_id):
 
     db.session.commit()
     edition = "Your data was successfully edited!"
-    return redirect(url_for("my_view.home", edition=edition))
+    return redirect(url_for("my_view./monday/", edition=edition))
+
+@my_view.route("/monday/", methods = ['GET', 'POST'])
+def monday():
+    week_data = Megabytes.query.all()
+    return render_template("monday.html", week_data=week_data)
+
+@my_view.route("/tuesday/", methods = ['GET', 'POST'])
+def tuesday():
+    return render_template("tuesday.html")
+
+@my_view.route("/wednesday/", methods = ['GET', 'POST'])
+def wednesday():
+    return render_template("wednesday.html")
+
+@my_view.route("/thursday/", methods = ['GET', 'POST'])
+def thursday():
+    return render_template("thursday.html")
+
+@my_view.route("/friday/", methods = ['GET', 'POST'])
+def friday():
+    return render_template("friday.html")
+
+@my_view.route("/saturday/", methods = ['GET', 'POST'])
+def saturday():
+    return render_template("saturday.html")
+
+@my_view.route("/sunday/", methods = ['GET', 'POST'])
+def sunday():
+    return render_template("sunday.html")
