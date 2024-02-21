@@ -47,86 +47,109 @@
     <hr>
     <br>
     <br>
+    <p>Please Type Data According to Your Till Report, in the following order:<br>
+    1st - Monday<br>
+    2nd - Tuesday<br>
+    3rd - Wednesday<br>
+    4th - Thursday<br>
+    5th - Friday<br>
+    6th - Saturday<br>
+    7th - Sunday<br>
+    </p>
+    <table>
+        <form action="/submit" method="post">
+            <tr>
+                <th></th>
+                <th>Day of the Week</th>
+                <th>Total Income</th>
+                <th>Highest Speed</th>
+                <th>Best Selling Item</th>
+                <th>Worst Selling Item</th>
+                <th>Average Basket Spend</th>
+                <th>Staff MVP</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Input Data</th>
+                <th><input type="text" id="day_id" name="day_id"></th>
+                <th><input type="text" id="total_income" name="total_income"></th>
+                <th><input type="text" id="highest_spend" name="highest_spend"></th>
+                <th><input type="text" id="best_selling_item" name="best_selling_item"></th>
+                <th><input type="text" id="worst_selling_item" name="worst_selling_item"></th>
+                <th><input type="text" id="avg_basket_spend" name="avg_basket_spend"></th>
+                <th><input type="text" id="staff_mvp" name="staff_mvp"> </th>
+                <th><button type="submit">Submit Data</button></th>
+            </tr>
+        </form>
+    </table>
+<hr>
 
-    <div>
+<div>
+    <h2>Megabytes Week Income</h2>
+    
 
-            <h2>Megabytes Week Income</h2>
-            {% if week_data %}
-            <div>
-                <p><img src="\static\images\week_income.png"></p>
 
-        </div>
+                    {% if week_data %}
+                    <div>
+                        <p><img src="\static\images\week_income.png"></p>
+                    </div>
+                    
+                    <h2> Daily Sales Overview</h2>
 
-        <div>
-            <h2> Daily Sales Overview</h2>
+                    <table>
+                        <tr>
+                            <th width="100"></th>
+                            <th width="100">Day</th>
+                            <th width="100">Total Income</th>
+                            <th width="100">Highest Spend</th>
+                            <th width="150">Best Selling Item</th>
+                            <th width="250">Worst Selling Item</th>
+                            <th width="200">Average Basket Spend</th>
+                            <th width="100">Staff MVP</th>
+                        </tr>
+                    </table>
 
-            {% for data in week_data %}
-            <div>
-                {{ data.id }}
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>Total Income</th>
-                        <th>Highest Spend</th>
-                        <th>Best Selling Item</th>
-                        <th>Worst Selling Item</th>
-                        <th>Average Basket Spend</th>
-                        <th>Staff MVP</th>
+                    {% for data in week_data %}
+                        <div>
+                            {{ data.id }}
+
+                            
+                    <table>
+                            <tr>
+                        <td width="100"></td>
+                        <td width="100">{{ data.day_id }}</td>
+                        <td width="100">{{ data.total_income }}</td>
+                        <td width="100">{{ data.highest_spend }}</td>
+                        <td width="150"> {{ data.best_selling_item }}</td>
+                        <td width="250">{{ data.worst_selling_item }}</td>
+                        <td width="200">{{ data.avg_basket_spend }}</td>
+                        <td width="100">{{ data.staff_mvp }}</td>
                     </tr>
                     <tr>
-                        <td>Edit Data</td>
-                        <form action="/edit_total_income/{{ data.id }}" method="post">
-                            <td>
-                            {{ data.total_income }}<br>
-                            <input type="text" name="edit_total_income" placeholder="Edit Data"><br>
-                            <button type="submit">Update Data</button>
-                            </td>
-                        </form>
-                        <form action="/edit_highest_spend/{{ data.id }}" method="post">
-                            <td>
-                            {{ data.highest_spend }}<br>
-                            <input type="text" name="edit_highest_spend" placeholder="Edit Data"><br>
-                            <button type="submit">Update Data</button>
-                            </td>
-                        </form>
-                        <form action="/edit_best_selling_item/{{ data.id }}" method="post">
-                            <td>
-                            {{ data.best_selling_item }}<br>
-                            <input type="text" name="edit_best_selling_item" placeholder="Edit Data"><br>
-                            <button type="submit">Update Data</button>
-                            </td>
-                        </form>
-                        <form action="/edit_worst_selling_item/{{ data.id }}" method="post">
-                            <td>
-                            {{ data.worst_selling_item }}<br>
-                            <input type="text" name="edit_worst_selling_item" placeholder="Edit Data"><br>
-                            <button type="submit">Update Data</button>
-                            </td>
-                        </form>
-                        <form action="/edit_avg_basket_spend/{{ data.id }}" method="post">
-                            <td>
-                            {{ data.avg_basket_spend }}<br>
-                            <input type="text" name="edit_avg_basket_spend" placeholder="Edit Data"><br>
-                            <button type="submit">Update Data</button>
-                            </td>
-                        </form>
-                        <form action="/edit_staff_mvp/{{ data.id }}" method="post">
-                            <td>
-                            {{ data.staff_mvp }}<br>
-                            <input type="text" name="edit_staff_mvp" placeholder="Edit Data"><br>
-                            <button type="submit">Update Data</button>
-                            </td>
-                        </form>
-                        <hr>
+                        <td width="100">Edit Data</td>
                     </tr>
                 </table>
+                <hr>                                           
+            </div> 
+        {% endfor %}
 
+        <main>
+            <div class="day-container">
+                <!-- Links to each day's page -->
+                <a href="/">Home</a>
+                <a href="/monday/">Monday</a>
+                <a href="/tuesday/">Tuesday</a>
+                <a href="/wednesday/">Wednesday</a>
+                <a href="/thursday/">Thursday</a>
+                <a href="/friday/">Friday</a>
+                <a href="/saturday/">Saturday</a>
+                <a href="/sunday/">Sunday</a>
             </div>
-                {% endfor %}
+        </main>
+    {% endif %}       
+</div>
 
-                {% endif %}
-        </div>        
-    </div>
-    
+
+
 </body>
 </html>
