@@ -2,13 +2,33 @@ details summary::-webkit-details-marker {
     display: none;
 }
 
-  /* Display each day of the week in a horizontal layout */
-.day-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+body{
+    background-color: #FFECD1
 }
+
+.day-container {
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+}
+    .day-container {
+    display: flex;
+    justify-content: space-evenly;
+    }
+    .day-container a {
+    margin-right: 100px;
+    margin-left: 100px;
+    text-decoration: none;
+    color:#FF7D00;
+    }
+
+    .day-container a:hover {
+    color: rgb(70, 25, 10);
+    }
+
+    .day-container a:visited {
+        color: black;
+    }
+
 
   /* Style each day to have some spacing */
 details {
@@ -64,17 +84,6 @@ input[type="submit"]:hover {
     color: #001524; /* Dark blue */
 }
 
-  /* Styling for main section */
-main {
-    text-align: center;
-}
-
-  /* Styling for footer */
-footer {
-    text-align: center;
-    margin-top: 20px;
-}
-
 .container {
     display: flex;
 }
@@ -93,14 +102,28 @@ footer {
     margin-bottom: 10px; /* Adjust margin as needed */
 }
 
-.chart {
-    width: 600px;
-    height: 350px;
+.week_income_chart {
+    width: 500px;
+    height: 400px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .centered-text {
     text-align: center;
     font-family: Arial, sans-serif;
+    color: rgb(70, 25, 10);
+}
+
+.days_text{
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.days_table{
+    color: #FF7D00;
 }
 
 .date-selector {
@@ -109,20 +132,23 @@ footer {
         right: 20px;
 }
 
-.day-container {
-        font-family: Arial, sans-serif;
-        margin-top: 20px;
-    }
+.input_table{
+    display: flex;
+    justify-content: center;
+}
 
-    .day-container {
-        display: flex;
-        justify-content: space-between;
-    }
-    .day-container a {
-        margin-right: 100px;
-        margin-left: 100px;
-    }
+.sales_table{
+    display: flex;
+    justify-content: center;
+    color: rgb(21, 97, 109)
+}
 
-    .day-container a:hover {
-        color: #007bff;
-    }
+.table_border {
+    border-top: 1px dotted;
+    border-bottom: 1px dotted;
+    border-color: rgb(255, 123, 0);
+}
+
+th, td{
+    text-align: center;
+}
